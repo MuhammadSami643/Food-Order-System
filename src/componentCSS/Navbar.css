@@ -1,0 +1,63 @@
+.navbar {
+  padding: 15px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  font-size: 14px;
+  color: var(--primary-color);
+}
+.menu li {
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-right button {
+  background: transparent;
+  font-size: 14px;
+  color: var(--primary-color);
+  border: 1px solid tomato;
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.nav-right button:hover {
+  background-color: tomato;
+  color: var(--primary-color);
+}
+
+.active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-search-icon {
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  min-height: 15px;
+  min-width: 15px;
+  background-color: tomato;
+  border-radius: 15px;
+  top: -10px;
+  right: -6px;
+}
