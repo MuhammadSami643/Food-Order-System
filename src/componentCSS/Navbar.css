@@ -1,5 +1,5 @@
 .navbar {
-  padding: 15px 0px;
+  padding: 20px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,6 +24,7 @@
 .nav-right {
   display: flex;
   gap: 30px;
+
   align-items: center;
 }
 
@@ -31,9 +32,9 @@
   background: transparent;
   font-size: 14px;
   color: var(--primary-color);
-  border: 1px solid tomato;
-  padding: 10px 30px;
-  border-radius: 50px;
+  border: 1px solid var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 150px;
   cursor: pointer;
   transition: 0.7s;
 }
@@ -41,6 +42,7 @@
 .nav-right button:hover {
   background-color: tomato;
   color: var(--primary-color);
+  border: 1px solid tomato;
 }
 
 .active {
