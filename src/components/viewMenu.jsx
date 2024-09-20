@@ -3,7 +3,8 @@ import "../componentCSS/viewMenu.css";
 
 import React from "react";
 
-const ViewMenu = () => {
+const ViewMenu = ({ category, setCategory }) => {
+  console.log(category);
   return (
     <>
       <div className="viewMenu" id="vMenu">
@@ -16,8 +17,21 @@ const ViewMenu = () => {
         <div className="viewMenuList">
           {menu_list.map((item, index) => {
             return (
-              <div key={index} className="menuListItem">
-                <img src={item.menu_image} alt="" />
+              <div
+                onClick={() =>
+                  setCategory((prev) =>
+                    prev === item.menu_name ? "All" : item.menu_name
+                  )
+                }
+                key={index}
+                className="menuListItem"
+              >
+                <img
+                  className={category === item.menu_name ? "active" : ""}
+                  src={item.menu_image}
+                  alt="Menu"
+                />
+
                 <p>{item.menu_name}</p>
               </div>
             );

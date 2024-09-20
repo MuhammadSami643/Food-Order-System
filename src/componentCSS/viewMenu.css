@@ -32,7 +32,7 @@
   width: 7.5vw;
   min-width: 80px;
   cursor: pointer;
-  transition: 1s;
+  transition: 0.2s;
 }
 
 .menuListItem p {
@@ -47,4 +47,11 @@
   height: 2px;
   background-color: var(--primary-color);
   border: none;
+}
+
+.menuListItem .active {
+  border: 3px solid tomato;
+  border-radius: 50%;
+  transition: none;
+  padding: 2px;
 }

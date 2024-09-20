@@ -1,14 +1,15 @@
+import React, { useState } from "react";
 import Header from "../components/header";
 import ViewMenu from "../components/viewMenu";
 import "../pagesCSS/Home.css";
 
-import React from "react";
-
 const Home = () => {
+  const [category, setCategory] = useState("All");
+
   return (
     <>
       <Header />
-      <ViewMenu />
+      <ViewMenu category={category} setCategory={setCategory} />
     </>
   );
 };
