@@ -3,9 +3,12 @@ import App from "./App.jsx";
 
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import StoreContextProvidor from "./context/StoreContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <App />
+    <StoreContextProvidor>
+      <App />
+    </StoreContextProvidor>
   </BrowserRouter>
 );

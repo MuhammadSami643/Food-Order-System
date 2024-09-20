@@ -4,7 +4,6 @@ import "../componentCSS/viewMenu.css";
 import React from "react";
 
 const ViewMenu = ({ category, setCategory }) => {
-  console.log(category);
   return (
     <>
       <div className="viewMenu" id="vMenu">
