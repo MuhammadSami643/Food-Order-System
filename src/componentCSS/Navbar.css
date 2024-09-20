@@ -14,7 +14,7 @@
   display: flex;
   list-style: none;
   gap: 40px;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--primary-color);
 }
 .menu li {
@@ -30,7 +30,7 @@
 
 .nav-right button {
   background: transparent;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   padding: 8px 15px;
