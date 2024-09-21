@@ -56,12 +56,12 @@
 
 .dot {
   position: absolute;
-  min-height: 15px;
-  min-width: 15px;
+  min-height: 10px;
+  min-width: 10px;
   background-color: tomato;
-  border-radius: 15px;
-  top: -10px;
-  right: -6px;
+  border-radius: 50%;
+  top: -8px;
+  right: -3px;
 }
 
 /* Responsive Site */
