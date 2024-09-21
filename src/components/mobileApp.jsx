@@ -5,7 +5,7 @@ import "../componentCSS/mobileApp.css";
 const MobileApp = () => {
   return (
     <>
-      <div className="mobile-app">
+      <div className="mobile-app" id="mobile-app">
         <p>
           For Better Experience Download <br /> Tomato App
         </p>

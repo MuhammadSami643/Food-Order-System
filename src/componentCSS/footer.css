@@ -44,3 +44,16 @@
   width: 100%;
   height: 2px;
 }
+
+/* Responsive Site */
+
+@media (max-width: 750px) {
+  .f-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  .copyright {
+    text-align: center;
+  }
+}

@@ -55,3 +55,12 @@
   transition: none;
   padding: 2px;
 }
+
+/* Responsive Site */
+
+@media (max-width: 1050px) {
+  .viewMenuText {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}
