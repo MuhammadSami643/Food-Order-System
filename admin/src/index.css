@@ -26,3 +26,7 @@ hr {
 :root {
   --primary-color: #49557e;
 }
+
+.app-content {
+  display: flex;
+}
