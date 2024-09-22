@@ -113,3 +113,41 @@
     display: none;
   }
 }
+
+.navbar-profile {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  display: none;
+  right: 0;
+  z-index: 1;
+}
+
+.navbar-profile:hover .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff2ef;
+  padding: 12px 15px;
+  border-radius: 5px;
+  border: 1px solid tomato;
+  outline: 2px solid white;
+  list-style: none;
+}
+
+.profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.profile-dropdown img {
+  width: 20px;
+}
+
+.profile-dropdown li:hover {
+  color: tomato;
+}

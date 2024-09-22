@@ -5,6 +5,17 @@ const StoreContext = createContext(null);
 
 const StoreContextProvidor = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const url = "http://localhost:3000";
+
+  const [token, setToken] = useState("");
+
+  // we want that when we refresh the page we will not get logged out
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, []);
 
   const addToCart = (itemid) => {
     if (!cartItems[itemid]) {
@@ -40,6 +51,9 @@ const StoreContextProvidor = (props) => {
     addToCart,
     removeFromCart,
     getTotalCartAmount,
+    url,
+    token,
+    setToken,
   };
 
   return (

@@ -4,14 +4,54 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 require("dotenv").config();
 
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.jwt_secret); // Ensure the secret key is correct
+};
 module.exports = {
-  loginUser: async (req, res) => {},
+  loginUser: async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+      // With this if any account is exists on this email than we store it in user
+      const user = await userModel.findOne({ email });
+
+      //We have to check that the user is exists or not
+      if (!user) {
+        res.send({
+          success: false,
+          message: "User does not exist on this email, Please Sign up",
+        });
+      }
+
+      //If the user exists then we have to compare the entered password and hashed password stored in database
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      // Rather the password is correct or not
+      if (!isMatch) {
+        res.send({
+          success: false,
+          message: "Invalid Credentials",
+        });
+      }
+
+      //If user Logged in successfully now we have to create a token for logged in user
+
+      const token = createToken(user._id);
+
+      return res.send({
+        success: true,
+        token,
+      });
+    } catch (error) {
+      console.log(error);
+      res.send({
+        success: false,
+        message: "Error ",
+      });
+    }
+  },
 
   registerUser: async (req, res) => {
-    const createToken = (id) => {
-      return jwt.sign({ id }, process.env.jwt_secret);
-    };
-
     const { name, email, password } = req.body;
     try {
       //Checking that is user  alreadt exists on this email
@@ -67,8 +107,6 @@ module.exports = {
         token,
       });
     } catch (error) {
-      console.log(error);
-
       return res.send({
         success: false,
         message: "Error",

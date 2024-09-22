@@ -62,6 +62,8 @@ const AddItems = ({ url }) => {
                 setImage(file);
                 setData((prevData) => ({ ...prevData, image: file }));
               }}
+              value={data.image}
+              name="image"
               type="file"
               id="image"
               hidden
