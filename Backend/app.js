@@ -4,13 +4,15 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var cors = require("cors");
-const router = require("./Routes/index");
+
 //Importing all the routes(API end-points)
 
+const router = require("./Routes/index");
+const userRouter = require("./Routes/userRouter");
 const foodRouter = require("./Routes/foodRouter");
 
 var app = express();
-app.use(cors());
+app.use(cors()); // use for integration of backend with frontened
 
 // view engine setup
 app.set("view engine", "jade");
@@ -22,6 +24,7 @@ app.use("/", router);
 
 //using Routes
 app.use("/food", foodRouter);
+app.use("/user", userRouter);
 app.use("/images", express.static("uploads"));
 
 // catch 404 and forward to error handler
