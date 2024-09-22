@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import axios from "axios";
 import "../pagesCSS/AddItems.css";
+import { toast } from "react-toastify";
 
-const AddItems = () => {
-  const url = "http://localhost:3000";
-
+const AddItems = ({ url }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -33,13 +32,12 @@ const AddItems = () => {
 
     const response = await axios.post(`${url}/food/add-food`, formData);
 
-    try {
-      if (response.data.success) {
-        setData({ name: "", description: "", price: "", category: "Salad" });
-        setImage(false);
-      }
-    } catch (error) {
-      console.log(error);
+    if (response.data.success) {
+      setData({ name: "", description: "", price: "", category: "Salad" });
+      setImage(false);
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.message);
     }
   };
 
