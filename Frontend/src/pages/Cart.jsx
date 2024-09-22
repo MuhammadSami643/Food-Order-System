@@ -5,7 +5,7 @@ import "../pagesCSS/Cart.css";
 import React, { useContext, useState } from "react";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -29,7 +29,8 @@ const Cart = () => {
               return (
                 <>
                   <div className="items-title cart-item">
-                    <img src={item.image} alt={item.name} />
+                    <img src={url + "/images/" + item.image} alt={item.name} />
+                    {/* <img src={item.image} alt={item.name} /> */}
                     <p>{item.name}</p>
                     <p>${item.price}</p>
                     <p>{cartItems[item._id]}</p>

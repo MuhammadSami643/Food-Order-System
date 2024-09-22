@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
+import axios from "axios";
 
 const StoreContext = createContext(null);
 
@@ -9,13 +9,26 @@ const StoreContextProvidor = (props) => {
 
   const [token, setToken] = useState("");
 
-  // we want that when we refresh the page we will not get logged out
+  //Function to fetch data from database regarding food products, here we call the API for get all food product
+  const fetchFoodList = async () => {
+    const response = await axios.get(url + "/food/food-list");
+    setFoodList(response.data.data);
+  };
 
+  // we want that when we refresh the page we will not get logged out
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+    async function loadData() {
+      //We want that this function runs when web-page is load and data is fetch from database
+      await fetchFoodList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
     }
+    loadData(); //here we call the function which fetch data
   }, []);
+
+  //We want to set our products which we fetch through API's from backend
+  const [food_list, setFoodList] = useState([]);
 
   const addToCart = (itemid) => {
     if (!cartItems[itemid]) {

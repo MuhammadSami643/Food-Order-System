@@ -5,7 +5,8 @@ import "../componentCSS/foodDisplay.css";
 
 const FoodDisplay = ({ category }) => {
   const { food_list } = useContext(StoreContext);
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
 
   return (
     <>
@@ -20,7 +21,8 @@ const FoodDisplay = ({ category }) => {
                   <div className="food-image">
                     <img
                       className="food-image-container"
-                      src={item.image}
+                      src={url + "/images/" + item.image.filename}
+                      // src={url + "/images/" + item.image.filename}
                       alt={item.name}
                     />
                     {!cartItems[id] ? (
