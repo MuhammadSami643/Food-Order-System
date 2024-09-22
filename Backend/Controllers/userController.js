@@ -2,18 +2,23 @@ const userModel = require("../Models/usermodel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+require("dotenv").config();
 
 module.exports = {
   loginUser: async (req, res) => {},
 
   registerUser: async (req, res) => {
+    const createToken = (id) => {
+      return jwt.sign({ id }, process.env.jwt_secret);
+    };
+
     const { name, email, password } = req.body;
     try {
       //Checking that is user  alreadt exists on this email
       const exists = await userModel.findOne({ email });
       if (exists) {
         return res.send({
-          success: true,
+          success: false,
           message: "User already exists on this email, Please sign In",
         });
       }
@@ -22,7 +27,7 @@ module.exports = {
       if (!validator.isEmail(email)) {
         return res.send({
           success: false,
-          message: "BC valid email enter kr Salyy",
+          message: "Enter valid email ",
         });
       }
 
@@ -31,7 +36,7 @@ module.exports = {
       if (password.length < 8) {
         return res.send({
           success: false,
-          message: "BC tagra password enter kr Salyy",
+          message: "Choose a Strong password ",
         });
       }
 
@@ -52,10 +57,24 @@ module.exports = {
       //New user is created and we have to save it in the data base model
 
       const user = await newUser.save(); //User is saved in dataBase and we store it in a varibale named user
+
+      //Now we have to create token for users
+
+      const token = createToken(user._id);
+
+      return res.send({
+        success: true,
+        token,
+      });
     } catch (error) {
-      res.send({
-        error: error,
+      console.log(error);
+
+      return res.send({
+        success: false,
+        message: "Error",
       });
     }
   },
+
+  //We take user id and based on user id and create token
 };
