@@ -1,5 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { NavLink } from "react-router-dom";
 import "../componentsCSS/sideBar.css";
 
 const SideBar = () => {
@@ -7,20 +8,20 @@ const SideBar = () => {
     <>
       <div className="sidebar">
         <div className="sidebar-options">
-          <div className="sidebar-option">
+          <NavLink to="/add-item" className="sidebar-option">
             <img src={assets.add_icon} alt="add" />
             <p>Add Items</p>
-          </div>
+          </NavLink>
 
-          <div className="sidebar-option">
-            <img src={assets.order_icon} alt="add" />
+          <NavLink to="/items-list" className="sidebar-option">
+            <img src={assets.order_icon} alt="list" />
             <p>List Items</p>
-          </div>
+          </NavLink>
 
-          <div className="sidebar-option">
-            <img src={assets.order_icon} alt="add" />
+          <NavLink to="/orders" className="sidebar-option">
+            <img src={assets.order_icon} alt="orders" />
             <p>Order</p>
-          </div>
+          </NavLink>
         </div>
       </div>
     </>
