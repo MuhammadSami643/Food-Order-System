@@ -5,7 +5,7 @@ const fs = require("fs");
 // Add Food Item
 module.exports = {
   addFood: async (req, res) => {
-    let image_file = `${req.file}`;
+    let image_file = `${req.file.filename}`;
 
     const food = new foodModel({
       name: req.body.name,

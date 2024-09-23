@@ -7,7 +7,7 @@ var cors = require("cors");
 
 //Importing all the routes(API end-points)
 
-const router = require("./Routes/index");
+const cartRouter = require("./Routes/cartRouter");
 const userRouter = require("./Routes/userRouter");
 const foodRouter = require("./Routes/foodRouter");
 
@@ -20,12 +20,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/", router);
 
 //using Routes
 app.use("/food", foodRouter);
 app.use("/user", userRouter);
 app.use("/images", express.static("uploads"));
+app.use("/cart", cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

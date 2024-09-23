@@ -21,7 +21,7 @@ const FoodDisplay = ({ category }) => {
                   <div className="food-image">
                     <img
                       className="food-image-container"
-                      src={url + "/images/" + item.image.filename}
+                      src={url + "/images/" + item.image}
                       // src={url + "/images/" + item.image.filename}
                       alt={item.name}
                     />
