@@ -22,6 +22,7 @@ const StoreContextProvidor = (props) => {
       await fetchFoodList();
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token")); //we call this function and get the token key with which we only get the data of that user's token
       }
     }
     loadData(); //here we call the function which fetch data
@@ -46,7 +47,7 @@ const StoreContextProvidor = (props) => {
   const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     //if any item remove by user, we remove it from database
-
+    // if request have toke this means user is logged in
     if (token) {
       await axios.post(
         url + "/cart/remove",
@@ -54,6 +55,17 @@ const StoreContextProvidor = (props) => {
         { headers: { token } }
       );
     }
+  };
+
+  //we want that when user add some items in cart it will show whenever user visited application So,
+  const loadCartData = async (token) => {
+    const response = await axios.post(
+      url + "/cart/get",
+      {},
+      { headers: { token } }
+    ); //we get one response in which we get the logged in user only data based on its token
+
+    setCartItems(response.data.cartData); // our cart data is loaded in this state, we want that this cart data is loaded whenever user is logged in that's why we call it in useEffect hook
   };
 
   useEffect(() => {
