@@ -3,7 +3,7 @@ require("dotenv").config();
 
 // File to authenticate user token
 
-const authMiddkeWare = async (req, res, next) => {
+const authMiddleWare = async (req, res, next) => {
   //we take the token from user using the header and we will destructure the token from header
 
   const { token } = req.headers;
@@ -11,7 +11,7 @@ const authMiddkeWare = async (req, res, next) => {
   //check rather that token exists or not
 
   if (!token) {
-    res.send({
+    return res.send({
       success: false,
       message: "Not Authorized Login again",
     });
@@ -33,4 +33,4 @@ const authMiddkeWare = async (req, res, next) => {
   }
 };
 
-module.exports = authMiddkeWare;
+module.exports = authMiddleWare;

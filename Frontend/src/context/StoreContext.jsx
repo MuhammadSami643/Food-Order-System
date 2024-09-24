@@ -30,16 +30,30 @@ const StoreContextProvidor = (props) => {
   //We want to set our products which we fetch through API's from backend
   const [food_list, setFoodList] = useState([]);
 
-  const addToCart = (itemid) => {
-    if (!cartItems[itemid]) {
-      setCartItems((prev) => ({ ...prev, [itemid]: 1 }));
+  const addToCart = async (itemId) => {
+    if (!cartItems[itemId]) {
+      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
-      setCartItems((prev) => ({ ...prev, [itemid]: prev[itemid] + 1 }));
+      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    }
+
+    // checking that token is available or not
+    if (token) {
+      await axios.post(url + "/cart/add", { itemId }, { headers: { token } }); //whenever we login and add some data in cart it will also update in the database
     }
   };
 
-  const removeFromCart = (itemid) => {
-    setCartItems((prev) => ({ ...prev, [itemid]: prev[itemid] - 1 }));
+  const removeFromCart = async (itemId) => {
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    //if any item remove by user, we remove it from database
+
+    if (token) {
+      await axios.post(
+        url + "/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
+    }
   };
 
   useEffect(() => {
@@ -51,7 +65,10 @@ const StoreContextProvidor = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
+        if (itemInfo) {
+          // Check if itemInfo is not undefined
+          totalAmount += itemInfo.price * cartItems[item];
+        }
       }
     }
     return totalAmount;

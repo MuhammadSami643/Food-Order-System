@@ -108,7 +108,7 @@
 }
 
 /* For width of 750 px */
-@media (max-width: 1050px) {
+@media (max-width: 750px) {
   .menu {
     display: none;
   }

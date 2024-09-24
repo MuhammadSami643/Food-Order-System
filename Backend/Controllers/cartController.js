@@ -5,7 +5,7 @@ module.exports = {
   addToCart: async (req, res) => {
     try {
       //while sending request we will not send userId, we send token and convert token into  UserId
-      let userData = await userModel.findOne(req.body.userId);
+      let userData = await userModel.findById(req.body.userId);
 
       //Now we can extract all the user data but here we only cartData
       let cartData = userData.cartData; //after that our users cart data is stored in this variable
@@ -20,7 +20,7 @@ module.exports = {
       }
 
       //now we have to update the cart with updated user cartData
-      await userModel.findByIdAndUpdate(req.body.uderId, { cartData });
+      await userModel.findByIdAndUpdate(req.body.userId, { cartData });
 
       res.send({
         success: true,
@@ -51,7 +51,7 @@ module.exports = {
 
       //now we have to update the user cart data
 
-      await userModel.findByIdAndUpdate(req.body.uderId, { cartData }); //new cart data will be updated
+      await userModel.findByIdAndUpdate(req.body.userId, { cartData }); //new cart data will be updated
 
       res.send({
         success: true,
@@ -71,7 +71,7 @@ module.exports = {
     try {
       //first we will find the user data using user id
       //we will get the user id using middleware
-      let userData = await userModel.findById(req.body.uderId);
+      let userData = await userModel.findById(req.body.userId);
 
       //from this userdata we have to extract the cart data
 
